@@ -52,7 +52,7 @@ function App() {
                   return (
                     <tr>
                       <td>{value.description}</td>
-                      <td>{value.AccountId}</td>
+                      <td>{value.accountName}</td>
                       <td>{value.date}</td>
                       <td>{value.amount}</td>
                     </tr>
