@@ -1,0 +1,6 @@
+{
+    "numberOfEmployees": 50,
+    "testSuffix" : "**test**",
+    "numberOfAccounts" : 10,
+    "numberOfTransactions": 100
+}
