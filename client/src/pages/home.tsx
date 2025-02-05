@@ -39,7 +39,7 @@ function Home() {
               <tbody>
                 {transactions.map((value, key) => {
                   return (
-                    <tr>
+                    <tr key={value.id}>
                       <td>{value.description}</td>
                       <td>{value.accountName}</td>
                       <td>{value.date}</td>

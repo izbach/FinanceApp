@@ -6,7 +6,7 @@ const testTransactionsFactory = function* (
   testSuffix
 ) {
   dates = faker.date.betweens({
-    from: "2020-01-01",
+    from: "2024-01-01",
     to: Date.now(),
     count: number,
   });
