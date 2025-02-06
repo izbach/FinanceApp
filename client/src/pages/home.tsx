@@ -19,33 +19,27 @@ function Home() {
       <Navbar />
       <div className="container text-center">
         <div className="row">
-          <div className="col"></div>
+          <div className="col">
+            <div className="card">
+              <h5 className="card-title">Expenses(YTD)</h5>
+              <div className="card-body">$53,809</div>
+            </div>
+          </div>
+          <div className="col">
+            <div className="card">
+              <h5 className="card-title">Income(YTD)</h5>
+              <div className="card-body">$53,809</div>
+            </div>
+          </div>
+          <div className="col">
+            <div className="card">
+              <h5 className="card-title">Expenses(YTD)</h5>
+              <div className="card-body">$53,809</div>
+            </div>
+          </div>
         </div>
         <div className="row">
-          <div className="col">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Description</th>
-                  <th scope="col">Account</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.map((value, key) => {
-                  return (
-                    <tr key={value.id}>
-                      <td>{value.description}</td>
-                      <td>{value.accountName}</td>
-                      <td>{value.date}</td>
-                      <td>{value.amount}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <div className="col"></div>
           <div className="col">
             <BarGraph />
           </div>

@@ -21,7 +21,8 @@ router.get("/", async (req, res) => {
         " transactions.amount, accounts.accountName AS accountName, accounts.accountType AS accountType FROM " +
         'transactions JOIN accounts ON "accounts"."id" = "transactions"."AccountId"' +
         dateString +
-        filter,
+        filter +
+        " ORDER BY transactions.date desc",
       {
         type: QueryTypes.SELECT,
       }
