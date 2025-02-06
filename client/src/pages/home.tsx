@@ -1,14 +1,12 @@
-import React from "react";
 import Navbar from "../Components/Navbar.tsx";
-import { LineGraph } from "../Components/LineGraph.tsx";
+// import { LineGraph } from "../Components/LineGraph.tsx";
 import { useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
 import { BarGraph } from "../Components/BarGraph.tsx";
+
 import axios from "axios";
 
 function Home() {
   const [transactions, setTransactions] = useState<any[]>([]);
-  // const { fetchCsvData } = useFetch();
 
   useEffect(() => {
     axios.get("http://localhost:3001/transactions").then((response) => {
@@ -21,9 +19,7 @@ function Home() {
       <Navbar />
       <div className="container text-center">
         <div className="row">
-          <div className="col">
-            <LineGraph />
-          </div>
+          <div className="col"></div>
         </div>
         <div className="row">
           <div className="col">
@@ -50,7 +46,9 @@ function Home() {
               </tbody>
             </table>
           </div>
-          <div className="col">2 of 3</div>
+          <div className="col">
+            <BarGraph />
+          </div>
         </div>
       </div>
     </div>

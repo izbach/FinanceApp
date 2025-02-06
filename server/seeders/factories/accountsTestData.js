@@ -17,7 +17,7 @@ const testAccountsFactory = function* (number, testSuffix) {
   for (const item in array) {
     yield {
       accountName: `${faker.food.fruit()} ${testSuffix}`,
-      accountType: expense[(faker.datatype.boolean(0.8) && 1) || 0],
+      accountType: expense[(faker.datatype.boolean(0.5) && 1) || 0],
       createdAt: new Date(),
       updatedAt: new Date(),
     };

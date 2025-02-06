@@ -15,7 +15,10 @@ const testTransactionsFactory = function* (
     yield {
       description: `${faker.lorem.words(3)} ${testSuffix}`,
       AccountId: faker.number.int({ min: 1, max: numberOfAccounts }),
-      date: dates[item].toISOString().split("T")[0],
+      date: faker.date
+        .between({ from: "2024-01-01", to: Date.now() })
+        .toISOString()
+        .split("T")[0],
       amount: faker.finance.amount(),
       createdAt: new Date(),
       updatedAt: new Date(),

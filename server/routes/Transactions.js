@@ -32,28 +32,29 @@ router.get("/", async (req, res) => {
   }
 });
 router.get("/sum", async (req, res) => {
-  try {
-    const { byAccount, dateFrom, dateTo } = req.query;
-    const dateString = dateStrFunc(dateFrom, dateTo);
-    groupString = ' GROUP BY "month-year"';
-    if (byAccount == "true") {
-      groupString = groupString + ", accountName";
-    }
-    const listOfTransactions = await sequelize.query(
-      "SELECT " +
-        "strftime('%m-%Y', date) as 'month-year'," +
-        " SUM(transactions.amount), accounts.accountType AS accountType, accounts.accountName AS accountName FROM " +
-        'transactions JOIN accounts ON "accounts"."id" = "transactions"."AccountId"' +
-        // dateString +
-        groupString,
-      {
-        type: QueryTypes.SELECT,
-      }
-    );
-    res.json(listOfTransactions);
-  } catch (error) {
-    res.status(500).send("Internal server error: ${error}");
+  // try {
+  const { byAccount, dateFrom, dateTo } = req.query;
+  const dateString = dateStrFunc(dateFrom, dateTo);
+  groupString = ' GROUP BY "month-year", "accountType"';
+  if (byAccount == "true") {
+    groupString = groupString + ", accountName";
   }
+  const listOfTransactions = await sequelize.query(
+    "SELECT " +
+      "strftime('%m-%Y', date) AS 'month-year', CAST(strftime('%Y', date) AS INTEGER) AS 'year',CAST(strftime('%m', date) AS INTEGER) AS 'month', " +
+      " ROUND(SUM(transactions.amount),2) AS 'sum', accounts.accountType AS accountType, accounts.accountName AS accountName FROM " +
+      'transactions JOIN accounts ON "accounts"."id" = "transactions"."AccountId"' +
+      dateString +
+      groupString +
+      " ORDER BY year asc",
+    {
+      type: QueryTypes.SELECT,
+    }
+  );
+  res.json(listOfTransactions);
+  // } catch (error) {
+  //   res.status(500).send("Internal server error: ${error}");
+  // }
 });
 
 router.post("/", async (req, res) => {
