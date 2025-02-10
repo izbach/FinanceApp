@@ -14,12 +14,14 @@ function dateStrFunc(dateFrom, dateTo) {
     '" AND "' +
     todayString +
     '"';
+  console.log(dateString);
   id1: if (!isDateValid(dateFrom) && !isDateValid(dateTo)) {
     break id1;
   } else if (isDateValid(dateFrom) && isDateValid(dateTo)) {
     dateString = " WHERE DATE(date) BETWEEN " + dateFrom + " AND " + dateTo;
   } else if (isDateValid(dateFrom)) {
-    " WHERE DATE(date) BETWEEN " + dateFrom + " AND " + todayString;
+    dateString =
+      " WHERE DATE(date) BETWEEN " + dateFrom + " AND " + todayString;
   } else {
     break id1;
   }

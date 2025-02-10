@@ -1,18 +1,9 @@
 import Navbar from "../Components/Navbar.tsx";
-// import { LineGraph } from "../Components/LineGraph.tsx";
-import { useEffect, useState } from "react";
 import { BarGraph } from "../Components/BarGraph.tsx";
-
-import axios from "axios";
+import { DoughnutChart } from "../Components/DoughnutChart.tsx";
+import { TotalsCard } from "../Components/IncomeDisplay.tsx";
 
 function Home() {
-  const [transactions, setTransactions] = useState<any[]>([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/transactions").then((response) => {
-      setTransactions(response.data);
-    });
-  }, []);
   return (
     <div>
       {" "}
@@ -26,10 +17,11 @@ function Home() {
             </div>
           </div>
           <div className="col">
-            <div className="card">
-              <h5 className="card-title">Income(YTD)</h5>
-              <div className="card-body">$53,809</div>
-            </div>
+            <TotalsCard
+              title="Income(YTD)"
+              dateFrom={new Date().toISOString().slice(5).concat("01-01")}
+              type="Income"
+            />
           </div>
           <div className="col">
             <div className="card">
@@ -39,7 +31,9 @@ function Home() {
           </div>
         </div>
         <div className="row">
-          <div className="col"></div>
+          <div className="col">
+            <DoughnutChart />
+          </div>
           <div className="col">
             <BarGraph />
           </div>
